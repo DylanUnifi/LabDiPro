@@ -18,7 +18,7 @@
 class user;
 class chat : public subject{
 public:
-    explicit chat(user mn, user on);
+    explicit chat(const user& first_user, const user& second_user);
 
     virtual ~chat();
 
@@ -38,11 +38,11 @@ public:
 
     const std::string &getMyName() const;
 
-    void setMyName(const std::string &myName);
+    void setMyName(const std::string &myN);
 
     const std::string &getOtherName() const;
 
-    void setOtherName(const std::string &otherName);
+    void setOtherName(const std::string &otherN);
 
 private:
     std::list<std::shared_ptr<observer>> observers;

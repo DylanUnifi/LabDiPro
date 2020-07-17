@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <memory>
+#include <utility>
 #include <vector>
 #include <list>
 #include <ctime>
@@ -19,23 +20,23 @@
 
 class messageNotifier: public observer{
 public:
-    explicit messageNotifier(bool act, std::shared_ptr<chat> sub) : active(act), subject(sub){}
-    virtual ~messageNotifier(){}
+    explicit messageNotifier(bool act, std::shared_ptr<chat> sub) : active(act), subject(std::move(sub)){}
+    ~messageNotifier() override= default;
 
-    virtual void attach() override;
+    void attach() override;
 
-    virtual void detach() override;
+    void detach() override;
 
-    virtual void update() override ;
+    void update() override ;
 
-    void draw(const message &ms);
+    static void draw(const message &ms);
 
     bool isActive() const {
         return active;
     }
 
-    void setActive(bool active) {
-        messageNotifier::active = active;
+    void setActive(bool a) {
+        messageNotifier::active = a;
     }
 
 private:
