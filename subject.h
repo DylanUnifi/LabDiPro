@@ -7,11 +7,11 @@
 #include "observer.h"
 #include <memory>
 
-class Subject {
+class subject {
 public:
-    virtual ~Subject(){}
-    virtual void subscribe(std::shared_ptr<Observer>  observer) = 0;
-    virtual void unsubscribe(std::shared_ptr<Observer>  observer) = 0;
+    virtual ~subject(){}
+    virtual void subscribe(std::shared_ptr<observer>  observer) = 0;
+    virtual void unsubscribe(std::shared_ptr<observer>  observer) = 0;
     virtual void notify() = 0;
 };
 #endif //LABDIPRO_SUBJECT_H

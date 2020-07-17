@@ -4,9 +4,9 @@
 
 #ifndef LABDIPRO_OBSERVER_H
 #define LABDIPRO_OBSERVER_H
-class Observer {
+class observer {
 public:
-    virtual ~Observer(){}
+    virtual ~observer(){}
     virtual void attach() = 0;
     virtual void detach() = 0;
     virtual void update() = 0;
