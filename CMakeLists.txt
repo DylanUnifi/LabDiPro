@@ -3,4 +3,4 @@ project(LabDiPro)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(LabDiPro main.cpp)
+add_executable(LabDiPro main.cpp observer.h)
