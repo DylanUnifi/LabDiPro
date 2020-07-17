@@ -6,6 +6,7 @@
 #define LABDIPRO_UNREADMESSAGENOTIFICATION_H
 
 
+#include <utility>
 #include <vector>
 #include <list>
 #include <memory>
@@ -16,17 +17,17 @@
 
 class unreadMessageNotification: public observer {
 public:
-    explicit unreadMessageNotification(std::shared_ptr<chat> sub):subject(sub){}
+    explicit unreadMessageNotification(std::shared_ptr<chat> sub):subject(std::move(sub)){}
 
-    ~unreadMessageNotification(){}
+    ~unreadMessageNotification() override= default;
 
-    virtual void attach() override;
+    void attach() override;
 
-    virtual void detach() override;
+    void detach() override;
 
-    virtual void update() override;
+    void update() override;
 
-    void draw(int um);
+    static void draw(int um);
 
 private:
     std::shared_ptr<chat> subject;

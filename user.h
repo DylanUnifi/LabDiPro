@@ -14,7 +14,7 @@
 class chat;
 class user {
 public:
-    explicit user(std::string name) : name(name) {}
+    explicit user(std::string& name) : name(name) {}
 
     ~user();
 
