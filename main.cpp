@@ -4,7 +4,9 @@
 #include "chat.h"
 #include "messageNotifier.h"
 #include "unreadMessageNotification.h"
+#include "version.h"
 int main() {
+    std::cout << "Chat message " << VERSION << std::endl;
     user elisa("Elisa");
     user francesca ("Francesca");
     std::shared_ptr<chat> ptr= elisa.createChat(francesca);
