@@ -32,7 +32,7 @@ public:
 
     void removeChat(const user& u);
 
-    void addChat(std::shared_ptr<chat> c, user & u);
+    void addChat(std::shared_ptr<chat> c, const user & u);
 
 
 private:
