@@ -9,12 +9,13 @@
 #include <iostream>
 #include <memory>
 #include <map>
+#include <utility>
 #include "chat.h"
 
 class chat;
 class user {
 public:
-    explicit user(const std::string& name) : name(name) {}
+    explicit user(std::string  name) : name(std::move(name)) {}
 
     ~user();
 

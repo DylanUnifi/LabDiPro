@@ -40,16 +40,6 @@ public:
         return currentTime;
     }
 
-    bool operator==(const message &rhs) const {
-        return sender == rhs.sender &&
-               receiver == rhs.receiver &&
-               text == rhs.text;
-    }
-
-    bool operator!=(const message &rhs) const {
-        return !(rhs == *this);
-    }
-
 private:
     bool read;
     std::string sender, receiver, text;
