@@ -8,8 +8,8 @@
 TEST(MessageNotifier, isActive) {
     user a("Maldini");
     user b("Yann");
-    chat *c = new chat(a,b);
-    std::shared_ptr<chat> ptr = std::make_shared<chat>(*c);
+    chat c(a,b);
+    std::shared_ptr<chat> ptr = std::make_shared<chat>(c);
     messageNotifier m(true,ptr);
     ASSERT_TRUE(m.isActive());
     m.setActive(false);
