@@ -4,7 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../chat.h"
-
+#include "../user.h"
 
 std::string name1 = "Maldini";
 std::string name2 = "Yann";
@@ -13,18 +13,20 @@ user yann(name2);
 
 TEST(chat,GetterSetter){
     chat c (maldini, yann);
-    ASSERT_EQ(c.getMyName(), "Maldini");
-    c.setMyName("Berkamp");
-    ASSERT_EQ(c.getMyName(), "Berkamp");
-    ASSERT_EQ(c.getOtherName(),"Yann");
-    c.setOtherName("Dylan");
-    ASSERT_EQ(c.getOtherName(), "Dylan");
+    ASSERT_EQ((c.getMyName())->getName(), maldini.getName());
+    user berkamp("Berkamp");
+    c.setMyName(&berkamp);
+    ASSERT_EQ((c.getMyName())->getName(), berkamp.getName());
+    ASSERT_EQ((c.getOtherName())->getName(),yann.getName());
+    user dylan("Dylan");
+    c.setOtherName(&dylan);
+    ASSERT_EQ((c.getOtherName())->getName(), dylan.getName());
     ASSERT_EQ(c.getUnreadMessages(), 0);
 }
 
 TEST(chat,functions){
     chat c (maldini, yann);
-    message mes ("Maldini","Yann", "Ciao Yann, come va?");
+    message mes (&maldini,&yann, "Ciao Yann, come va?");
     c.addMessage (mes);
     c.addMessage (mes);
     c.addMessage (mes);

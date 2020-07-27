@@ -26,11 +26,11 @@ const message& chat::lastMessage() const{
 
 void chat::readMessage(int i){
     if(i>0 && i<messages.size()) {
-        if (messages[i].getSender() == myName) {
+        if (*(messages[i].getSender()) == *myName) {
             std::cout <<"Sender: "<< (messages[i].getSender())->getName() <<", "<<"Receiver: "<<
             (messages[i].getReceiver())->getName()<< std::endl;
-            std::cout <<"Text: "<< messages[i].getText() << std::endl;
-            messages[i].setRead(true);
+            std::cout <<"Text: "<< (messages[i]).getText() << std::endl;
+            (messages[i]).setRead(true);
             this->notify();
         }
     }

@@ -10,4 +10,5 @@ TEST(user, GetterSetter) {
     ASSERT_EQ(l.getName(), "Fouepe");
     l.setName("Dongmo");
     ASSERT_EQ(l.getName(), "Dongmo");
+    ASSERT_TRUE(l==l);
 }

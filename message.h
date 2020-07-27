@@ -15,7 +15,7 @@
 class user;
 class message{
 public:
-    message(user * se, user* re, std::string te, bool r = false): sender(se), receiver(re), text(std::move(te)), read(r){
+    message(user * se, user* re, std::string te,bool r = false): sender(se), receiver(re), text(std::move(te)), read(r){
         time(&currentTime);
     }
 

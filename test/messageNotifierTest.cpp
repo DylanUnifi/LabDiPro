@@ -4,6 +4,7 @@
 
 #include "gtest/gtest.h"
 #include "../messageNotifier.h"
+#include "../user.h"
 
 TEST(MessageNotifier, isActive) {
     user a("Maldini");
