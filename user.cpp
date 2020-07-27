@@ -27,3 +27,7 @@ std::shared_ptr<chat> user::findChat(const user& u){
     auto it=chats.find(u.getName());
     return (it->second);
 }
+
+bool user::operator==(const user &right) {
+    return name == right.getName();
+}

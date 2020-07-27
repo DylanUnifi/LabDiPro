@@ -34,6 +34,7 @@ public:
 
     void addChat(std::shared_ptr<chat> c, const user & u);
 
+    bool operator==(const user& right);
 
 private:
     std::string name;

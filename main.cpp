@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "chat.h"
+#include "user.h"
 #include "messageNotifier.h"
 #include "unreadMessageNotification.h"
 #include "version.h"
@@ -12,9 +13,9 @@ int main() {
     std::shared_ptr<chat> ptr= dylan.createChat(berkamp);
     std::shared_ptr<chat> ptr2= dylan.findChat(berkamp);
     user paul("Paul");
-    message foo("Dylan", "Berkamp", "Ciao Berkamp, come va?");
-    message bar("Berkamp", "Dylan", "Tutto bene, te?");
-    message fooBar("Dylan", "Berkamp", "Anch'io tutto bene");
+    message foo(&dylan, &berkamp, "Ciao Berkamp, come va?");
+    message bar(&berkamp, &dylan, "Tutto bene, te?");
+    message fooBar(&dylan, &berkamp, "Anch'io tutto bene");
     messageNotifier messageNotifier(true, ptr);
     unreadMessageNotification iconBadgeMonitor(ptr);
     messageNotifier.attach();

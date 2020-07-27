@@ -33,10 +33,6 @@ public:
         return currentTime;
     }
 
-private:
-    bool read;
-    user *sender, *receiver;
-    std::string text;
 public:
     user *getSender() const {
         return sender;
@@ -45,10 +41,12 @@ public:
     user *getReceiver() const {
         return receiver;
     }
-
+    message(const message& original);
+    message & operator=(const message& right);
 private:
     time_t currentTime{};
+    bool read;
+    user *sender, *receiver;
+    std::string text;
 };
-
-
 #endif //LABDIPRO_MESSAGE_H

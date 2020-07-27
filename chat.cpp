@@ -13,9 +13,10 @@ chat::chat(user& first_user, user& second_user){
 chat::~chat() = default;
 
 void chat::addMessage(const message& newMsg){
-    if((myName==newMsg.getReceiver()||myName==newMsg.getSender())&&(otherName==newMsg.getSender()||otherName==newMsg.getReceiver()))
+    if((*myName==*(newMsg.getReceiver())||*myName==*(newMsg.getSender()))&&(*otherName==*(newMsg.getSender())
+    ||*otherName==*(newMsg.getReceiver())))
         messages.push_back(newMsg);
-    if(myName==newMsg.getReceiver())
+    if(*myName==*(newMsg.getReceiver()))
         this->notify();
 }
 
@@ -26,7 +27,8 @@ const message& chat::lastMessage() const{
 void chat::readMessage(int i){
     if(i>0 && i<messages.size()) {
         if (messages[i].getSender() == myName) {
-            std::cout <<"Sender: "<< messages[i].getSender() <<", "<<"Receiver: "<< messages[i].getReceiver() << std::endl;
+            std::cout <<"Sender: "<< (messages[i].getSender())->getName() <<", "<<"Receiver: "<<
+            (messages[i].getReceiver())->getName()<< std::endl;
             std::cout <<"Text: "<< messages[i].getText() << std::endl;
             messages[i].setRead(true);
             this->notify();
@@ -38,7 +40,7 @@ void chat::readMessage(int i){
 int chat::getUnreadMessages() const{
     int i=0;
     for(const auto& message:messages)
-        if(message.getReceiver()==otherName)
+        if(*(message.getReceiver())==*otherName)
             if (!message.isRead())
                 i++;
     return i;
