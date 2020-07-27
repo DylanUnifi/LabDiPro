@@ -48,6 +48,8 @@ public:
     chat(const chat& original);
     chat & operator=(const chat& right);
 
+    const std::vector<message> &getMessages() const;
+
 private:
     std::list<std::shared_ptr<observer>> observers;
     std::vector<message> messages;

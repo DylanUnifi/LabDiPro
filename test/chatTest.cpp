@@ -41,3 +41,12 @@ TEST(chat,functions){
     ASSERT_THROW(c.readMessage(5), std::out_of_range);
     ASSERT_THROW(c.readMessage(6), std::out_of_range);
 }
+
+TEST(chat, add_message){
+    chat c (maldini, yann);
+    user berkamp("Berkamp");
+    user dylan("Dylan");
+    message mes (&berkamp,&dylan, "Questo messaggio non sarà inoltrato");
+    c.addMessage (mes);
+    ASSERT_TRUE(c.getMessages().empty());
+}

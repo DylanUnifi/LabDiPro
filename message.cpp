@@ -8,6 +8,7 @@
 message::message(const message &original) {
     currentTime = original.currentTime;
     read = original.read;
+    text = original.text;
     if (original.sender != nullptr && original.receiver){
         sender = new user(*original.sender);
         receiver = new user(*original.receiver);
@@ -26,6 +27,7 @@ message& message::operator=(const message &right) {
 
         currentTime = right.currentTime;
         read = right.read;
+        text = right.text;
         if (right.sender != nullptr && right.receiver){
             sender = new user(*right.sender);
             receiver = new user(*right.receiver);

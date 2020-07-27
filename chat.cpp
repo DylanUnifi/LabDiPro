@@ -75,8 +75,12 @@ void chat::setOtherName(user *otherName) {
 }
 
 chat::chat(const chat &original) {
-    observers = original.observers;
-    messages = original.messages;
+
+    observers.assign(original.observers.begin(),original.observers.end());
+    int size = original.messages.size();
+    for (int i = 0; i < size; ++i) {
+        messages[i]=original.messages[i];
+    }
 
     if (original.myName != nullptr && original.otherName){
         myName = new user(*original.myName);
@@ -95,8 +99,11 @@ chat& chat::operator=(const chat &right) {
             delete otherName;
         }
 
-        observers = right.observers;
-        messages = right.messages;
+        observers.assign(right.observers.begin(),right.observers.end());
+        int size = right.messages.size();
+        for (int i = 0; i < size; ++i) {
+            messages[i]=right.messages[i];
+        }
         if (right.myName != nullptr && right.otherName){
             myName = new user(*right.myName);
             otherName = new user(*right.otherName);
@@ -107,4 +114,8 @@ chat& chat::operator=(const chat &right) {
         }
     }
     return *this;
+}
+
+const std::vector<message> &chat::getMessages() const {
+    return messages;
 }
