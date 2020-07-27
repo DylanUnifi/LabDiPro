@@ -11,14 +11,13 @@
 #include <vector>
 #include <list>
 
-#include "user.h"
 #include "message.h"
 #include "subject.h"
 
 class user;
 class chat : public subject{
 public:
-    explicit chat(const user& first_user, const user& second_user);
+    explicit chat(user& first_user, user& second_user);
 
     virtual ~chat();
 
@@ -36,19 +35,24 @@ public:
 
     virtual void notify() override;
 
-    const std::string &getMyName() const;
+    user *getMyName() const;
 
-    void setMyName(const std::string &myN);
+    void setMyName(user *myName);
 
-    const std::string &getOtherName() const;
+    user *getOtherName() const;
 
-    void setOtherName(const std::string &otherN);
+    void setOtherName(user *otherName);
+
+    chat(user *myName, user *otherName);
+
+    chat(const chat& original);
+    chat & operator=(const chat& right);
 
 private:
     std::list<std::shared_ptr<observer>> observers;
     std::vector<message> messages;
-    std::string myName;
-    std::string otherName;
+    user* myName;
+    user* otherName;
 };
 
 

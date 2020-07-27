@@ -3,7 +3,12 @@
 //
 
 #include "chat.h"
-chat::chat(const user& first_user, const user& second_user):myName(first_user.getName()), otherName(second_user.getName()) {}
+#include "user.h"
+
+chat::chat(user& first_user, user& second_user){
+    myName = &first_user;
+    otherName = &second_user;
+}
 
 chat::~chat() = default;
 
@@ -49,18 +54,55 @@ void chat::notify() {
         observer->update();
 }
 
-const std::string &chat::getMyName() const {
+chat::chat(user *myName, user *otherName) : myName(myName), otherName(otherName) {}
+
+user *chat::getMyName() const {
     return myName;
 }
 
-void chat::setMyName(const std::string &myN) {
-    chat::myName = myN;
+void chat::setMyName(user *myName) {
+    chat::myName = myName;
 }
 
-const std::string &chat::getOtherName() const {
+user *chat::getOtherName() const {
     return otherName;
 }
 
-void chat::setOtherName(const std::string &otherN) {
-    chat::otherName = otherN;
+void chat::setOtherName(user *otherName) {
+    chat::otherName = otherName;
+}
+
+chat::chat(const chat &original) {
+    observers = original.observers;
+    messages = original.messages;
+
+    if (original.myName != nullptr && original.otherName){
+        myName = new user(*original.myName);
+        otherName = new user(*original.otherName);
+    }
+    else{
+        myName = {nullptr};
+        otherName = {nullptr};
+    }
+}
+
+chat& chat::operator=(const chat &right) {
+    if (this != &right) {
+        if (myName != nullptr && otherName != nullptr){
+            delete myName;
+            delete otherName;
+        }
+
+        observers = right.observers;
+        messages = right.messages;
+        if (right.myName != nullptr && right.otherName){
+            myName = new user(*right.myName);
+            otherName = new user(*right.otherName);
+        }
+        else{
+            myName = nullptr;
+            otherName = nullptr;
+        }
+    }
+    return *this;
 }

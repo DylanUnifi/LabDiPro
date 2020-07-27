@@ -12,18 +12,11 @@
 #include <list>
 #include <ctime>
 
+class user;
 class message{
 public:
-    message(std::string se, std::string re, std::string te, bool r = false): sender(std::move(se)), receiver(std::move(re)), text(std::move(te)), read(r){
+    message(user * se, user* re, std::string te, bool r = false): sender(se), receiver(re), text(std::move(te)), read(r){
         time(&currentTime);
-    }
-
-    const std::string & getSender() const {
-        return sender;
-    }
-
-    const std::string & getReceiver() const {
-        return receiver;
     }
 
     const std::string & getText() const {
@@ -42,7 +35,18 @@ public:
 
 private:
     bool read;
-    std::string sender, receiver, text;
+    user *sender, *receiver;
+    std::string text;
+public:
+    user *getSender() const {
+        return sender;
+    }
+
+    user *getReceiver() const {
+        return receiver;
+    }
+
+private:
     time_t currentTime{};
 };
 

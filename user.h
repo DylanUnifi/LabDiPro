@@ -10,7 +10,6 @@
 #include <memory>
 #include <map>
 #include <utility>
-#include "chat.h"
 
 class chat;
 class user {

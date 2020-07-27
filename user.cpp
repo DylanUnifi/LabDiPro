@@ -3,6 +3,7 @@
 //
 
 #include "user.h"
+#include "chat.h"
 
 user::~user() = default;
 
